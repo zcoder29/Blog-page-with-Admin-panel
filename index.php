@@ -16,31 +16,12 @@ include "includes/header.php"; ?>
             </h1>
 
         <?php
-        
-        if(isset($_GET['page'])){
-            
-            $page = $_GET['page'];
-            
-        }else{
-            
-            $page = "";
-        }
-                
-        if($page == "" || $page == 1){
-            
-            $page_1 = 0;
-        
-        }else{
-            
-            $page_1 = ($page * 5) - 5;    
-        }
-        
                 
         $query = "SELECT * FROM posts WHERE post_status = 'Published'";
         $select_all_posts = mysqli_query($connection, $query);
         $count = mysqli_num_rows($select_all_posts);        
                 
-        $query = "SELECT * FROM posts WHERE post_status = 'Published' ORDER BY post_id DESC LIMIT 3";
+        $query = "SELECT * FROM posts WHERE post_status = 'Published' ORDER BY post_id DESC ";
         $select_all_posts = mysqli_query($connection, $query);
                 
         if( mysqli_num_rows($select_all_posts) == 0 ){
@@ -88,17 +69,7 @@ include "includes/header.php"; ?>
         ?> 
 
                 <!-- Pager -->
-                <ul class="pager">
-                   <?php 
-                    
-                    for($i=1; $i<=$count; $i++){
-                        
-                        echo "<li><a href=''>{$i}</a></li>";    
-                    }
-                    ?>
-                   
-                   
-                   
+                 
 <!--
                     <li class="previous">
                         <a href="#">&larr; Older</a>
@@ -107,7 +78,6 @@ include "includes/header.php"; ?>
                         <a href="#">Newer &rarr;</a>
                     </li>
 -->
-                </ul>
 
             </div>
 
